@@ -64,13 +64,16 @@ $("#result").append(`
 `);
 ```
 
-###6. destructuring 解构
+###6. destructuring 解构: 从对象中获取属性
 ```javascript
 let cat = 'ken'
 let dog = 'lili'
 let zoo = {cat, dog}
 console.log(zoo)  //Object {cat: "ken", dog: "lili"}
 ```
+数组：序号一一对应
+对象：属性名一一对应
+
 
 ###7. default默认值
 ```javascript
@@ -80,13 +83,21 @@ function animal(type = 'cat'){
 animal()
 ```
 
-###8. rest ...
-```javascipt
+###8. rest ...展开运算符
+```javascript
 function animals(...types){
     console.log(types)
 }
 animals('cat', 'dog', 'fish') //["cat", "dog", "fish"]
 ```
+将数组或者对象展开
+解构的时候不确定有多少参数，利用展开运算符处理余下的数据
+const{size, ...others} = props;
+
+函数的参数不确定，放在最后表示函数的不定参
+function add(a,b, ...more) {
+
+}
 
 ###9. for of 遍历
 
@@ -262,6 +273,14 @@ promise.then(function(result) {
     console.log(err); // Error: "It broke"
 });
 ```
+####9. async
+内置执行器
+更好的语义：
+async表示函数内有异步操作
+
+await 表示在这里等待promise返回结果了，再继续执行
+
+
 
 ### babel
 Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。

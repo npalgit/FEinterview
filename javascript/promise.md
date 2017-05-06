@@ -144,3 +144,5 @@ renderRace().then(value => {
 })
 //object
 ```
+
+http://www.cnblogs.com/lvdabao/p/es6-promise-1.html
