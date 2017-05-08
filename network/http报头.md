@@ -33,4 +33,4 @@ Etag: 0cc3ad6b6459efcc39d094137ea3e2fc
 Server:nginx  服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置
 Set-Cookie: 设置和页面关联的cookie
 Transfer-Encoding: chunked数据传输的方式(chunked,identity，从字面意义可以理解，前者指把要发送传输的数据切割成一系列的块数据传输，后者指传输时不做任何处理，自身的本质数据形式传输)
-Location: 表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302
+Location: 表示客户应当到哪里去提取文档。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态代码为302/301

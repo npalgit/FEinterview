@@ -1,27 +1,24 @@
+# cookie localstorage sessionstorage区别
 https://segmentfault.com/a/1190000002723469
 
-特性 	Cookie 	localStorage 	sessionStorage
-数据的生命期 	可设置失效时间，默认是关闭浏览器后失效 	除非被清除，否则永久保存 	仅在当前会话下有效，关闭页面或浏览器后被清除
-存放数据大小 	4K左右 	一般为5MB 	一般为5MB
-与服务器端通信 	每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题 	仅在客户端（即浏览器）中保存，不参与和服务器的通信 	仅在客户端（即浏览器）中保存，不参与和服务器的通信
-易用性 	需要程序员自己封装，源生的Cookie接口不友好 	源生接口可以接受，亦可再次封装来对Object和Array有更好的支持 	源生接口可以接受，亦可再次封装来对Object和Array有更好的支持
-
-
-
-
-
-cookie有secure属性，要求HTTPS传输。
+| 特性 |	Cookie |	localStorage |	sessionStorage|
+| ---: | ---: | ---: | ---: |
+|数据的生命期 |	可设置失效时间，默认是关闭浏览器后失效 |	除非被清除，否则永久保存 |	仅在当前会话下有效，关闭页面或浏览器后被清除|
+|存放数据大小 |	4K左右 |	一般为5MB| 	一般为5MB|
+|与服务器端通信 |	每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题 |	仅在客户端（即浏览器）中保存，不参与和服务器的通信 |	仅在客户端（即浏览器）中保存，不参与和服务器的通信|
+|易用性| 	需要程序员自己封装，源生的Cookie接口不友好 |	源生接口可以接受，亦可再次封装来对Object和Array有更好的支持 |	源生接口可以接受，亦可再次封装来对Object和Array有更好的支持
+|cookie有secure属性，要求HTTPS传输。|
 
 
 1. 因为考虑到每个 HTTP 请求都会带着 Cookie 的信息， 因为考虑到每个 HTTP 请求都会带着 Cookie 的信息
 2. localStorage 接替了 Cookie 管理购物车的工作，比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的
 3. 为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。
 
-Storage
+## Storage
 setItem（key,value）
 getItem(key)
 removeItem(key)
-claer()
+clear()
 key(index)
 length;
 for(var i=0,len=local.Storage.length;i<len;++i){
@@ -29,11 +26,13 @@ for(var i=0,len=local.Storage.length;i<len;++i){
      var value = localStorage.getItem(name);
 }
 
-Cookie
+## Cookie
 document.cookie = "name=qiu;max-age=999;path=/;domain=domain;secure"
 max-age=0可以删除cookie
 不同健值用;分割
 
+
+## cookie session
 http://www.jb51.net/article/55703.htm
 PHP会话控制:Session与Cookie详解投稿：junjie 字体：[增加 减小] 类型：转载 时间：2014-09-27 我要评论
 这篇文章主要介绍了PHP会话控制:Session与Cookie详解,本文详细讲解了PHP中Session与Cookie的相关知识,涵盖面较广,需要的朋友可以参考下

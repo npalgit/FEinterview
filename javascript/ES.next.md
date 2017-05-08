@@ -1,12 +1,12 @@
-##ES6新增特性
+## ES6新增特性
 ES6最常用的几个语法：let, const, class, extends, super, arrow functions, template string, destructuring, default, rest arguments
-###1. let
+### 1. let
 新增了块级作用域。用它所声明的变量，只在let命令所在的代码块内有效。
 
-###2. const
+### 2. const
 const也用来声明变量，但是声明的是常量。一旦声明，常量的值就不能改变
 
-###3. class，super，extends
+### 3. class，super，extends
 ```javascript
 class Animal {
     constructor(){
@@ -33,7 +33,7 @@ cat.says('hello') //cat says hello
 extends关键字实现继承
 子类必须在constructor方法中调用super方法，否则新建实例时会报错
 
-###4. => arrow function
+### 4. => arrow function
 参数 => 操作
 
 ```javascript
@@ -54,7 +54,7 @@ class Animal {
 当我们使用箭头函数时，函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
 并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，它的this是继承外面的，因此内部的this就是外层代码块的this。
 
-###5. template string 字符串模板` `
+### 5. template string 字符串模板` `
 **用反引号（`）来标识起始，用${}来引用变量**，而且所有的空格和缩进都会被保留在输出之中
 ```javascript
 $("#result").append(`
@@ -64,7 +64,7 @@ $("#result").append(`
 `);
 ```
 
-###6. destructuring 解构: 从对象中获取属性
+### 6. destructuring 解构: 从对象中获取属性
 ```javascript
 let cat = 'ken'
 let dog = 'lili'
@@ -75,7 +75,7 @@ console.log(zoo)  //Object {cat: "ken", dog: "lili"}
 对象：属性名一一对应
 
 
-###7. default默认值
+### 7. default默认值
 ```javascript
 function animal(type = 'cat'){
     console.log(type)
@@ -83,7 +83,7 @@ function animal(type = 'cat'){
 animal()
 ```
 
-###8. rest ...展开运算符
+### 8. rest ...展开运算符
 ```javascript
 function animals(...types){
     console.log(types)
@@ -99,7 +99,7 @@ function add(a,b, ...more) {
 
 }
 
-###9. for of 遍历
+### 9. for of 遍历
 
 ```javascript
 var someArray = [ "a", "b", "c" ];
@@ -115,9 +115,9 @@ for (v of someArray) {
 #####5. 函数扩展
 #####6. 对象扩展
 
-###11.以下
+### 11.以下
 
-####1. iterator遍历器
+#### 1. iterator遍历器
 它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
 作用有三个：
 一是为各种数据结构，提供一个统一的、简便的访问接口；
@@ -125,7 +125,7 @@ for (v of someArray) {
 三Iterator接口提供for...of遍历方法。
 遍历过程：next
 
-####2. generator函数：异步编程
+#### 2. generator函数：异步编程
 特征：
 一，function关键字与函数名之间有一个星号；
 二是，函数体内部使用yield语句，定义不同的内部状态
@@ -155,7 +155,9 @@ hw.next()
 // { value: undefined, done: true }
 ```
 
-####3. module模块
+>generator 的本质是可以将一个函数执行暂停，并保存上下文，再次调用时恢复当时的状态
+
+#### 3. module模块
 将不同功能的代码分别写在不同文件中，各模块只需导出公共接口部分，然后通过模块的导入的方式可以在其他地方使用
 import, export
 ```javascript
@@ -179,7 +181,7 @@ var origin = new Point(0, 0);
 console.log(origin);
 ```
 
-####4. Set,Weakset
+#### 4. Set,Weakset
 ```javascript
 var s = new Set();
 s.add("hello").add("goodbye").add("hello");
@@ -193,7 +195,7 @@ var ws = new WeakSet();
 ws.add({ data: 42 });//因为添加到ws的这个临时对象没有其他变量引用它，所以ws不会保存它的值，也就是说这次添加其实没有意思
 ```
 
-####5. Map,WeakMap
+#### 5. Map,WeakMap
 ```javascript
 var m = new Map();
 m.set("hello", 42);
@@ -208,7 +210,7 @@ wm.set(s, { extra: 42 });
 wm.size === undefined
 ```
 
-####6. Proxies
+#### 6. Proxies
 可以监听对象身上发生了什么事情，并在这些事情发生后执行一些相应的操作。一下子让我们对一个对象有了很强的追踪能力，同时在数据绑定方面也很有用处
 ```javascript
 //定义被侦听的目标对象
@@ -226,7 +228,7 @@ engineer = Proxy(engineer, interceptor);
 engineer.salary = 60;//控制台输出：salary is changed to 60
 ```
 
-####7. Symbols
+#### 7. Symbols
 
 Symbol是一种基本类型，像数字，字符串还有布尔一样，它不是一个对象。Symbol 通过调用symbol函数产生，它接收一个可选的名字参数，该函数返回的symbol是唯一的。之后就可以用这个返回值做为对象的键了。Symbol还可以用来创建私有属性，外部无法直接访问由symbol做为键的属性值。
 
@@ -252,7 +254,7 @@ var c = new MyClass("hello")
 c["key"] === undefined//无法访问该属性，因为是私有的
 ```
 
-####8. Promises 处理异步操作
+#### 8. Promises 处理异步操作
 Promises是处理异步操作的一种模式，之前在很多三方库中有实现，比如jQuery的deferred 对象。当你发起一个异步请求，并绑定了.when(), .done()等事件处理程序时，其实就是在应用promise模式。
 ```javascript
 //创建promise
@@ -273,13 +275,14 @@ promise.then(function(result) {
     console.log(err); // Error: "It broke"
 });
 ```
-####9. async
+#### 9. async
 内置执行器
 更好的语义：
 async表示函数内有异步操作
-
 await 表示在这里等待promise返回结果了，再继续执行
 
+http://aisk.me/using-async-await-to-avoid-callback-hell/
+>async 可以声明一个异步函数，此函数需要返回一个 Promise 对象。await 可以等待一个 Promise 对象 resolve，并拿到结果。
 
 
 ### babel
