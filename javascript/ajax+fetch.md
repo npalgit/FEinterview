@@ -122,3 +122,229 @@ xhr提供了3个属性来获取请求返回的数据，分别是：xhr.response�
    |onerror |	在请求过程中，若发生Network error则会触发此事件（若发生Network error时，上传还没有结束，则会先触发xhr.upload.onerror，再触发xhr.onerror；若发生Network error时，上传已经结束，则只会触发xhr.onerror）。注意，只有发生了网络层级别的异常才会触发此事件，对于应用层级别的异常，如响应返回的xhr.statusCode是4xx时，并不属于Network error，所以不会触发onerror事件，而是会触发onload事件。|
 
 # fetch
+接收一个URL参数，返回一个promise来处理response。response参数带着一个Response对象
+https://fetch.spec.whatwg.org/#concept-request-initiator
+## 简单示例
+```js
+//ajax
+var xhr = new XMLHttpRequst();
+xhr.open('get', url, true);
+xhr.send();
+xhr.onload = function() {
+    console.log(xhr.responseText)
+}
+xhr.onerror = function() {
+    console.log("error");
+}
+
+//fetch
+fetch(url).then(function(response) {
+    return response.json();
+}).then(function(data) {
+    console.log(data);
+}).catch(function(e) {
+    console.log("error");
+});
+/*
+将URL传递给全局的fetch()方法，它会立刻返回一个Promise， 
+当Promise被通过，它会返回一个Response对象，通过该对象的json()方法可以将结果作为JSON对象返回。
+response.json()同样会返回一个Promise对象，因此在我们的例子中可以继续链接一个then()方法。
+*/
+
+
+//async
+async function getjson() {
+    try {
+        let response = await fetch(url);
+        let data = response.json();
+        console.log(data);
+    } catch (e) {
+        console.log("error");
+    }
+}
+```
+
+## 方法
+1. fetch函数参数
+```js
+fetch("http://blog.parryqiu.com", {
+    headers: {
+        'Cache-Control': 'no-cache'//不缓存请求
+    }
+})  
+.then(function(response){
+   // do something...
+})
+//更多
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "text/plain");
+myHeaders.append("Content-Length", content.length.toString());
+myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+
+var myInit = { 
+                method: 'GET',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default' 
+             };
+               
+fetch("http://blog.parryqiu.com", myInit)
+.then(function(response){
+    // do something...
+})
+```
+2. 返回的reponse
+Response.status 也就是 StatusCode，如成功就是 200；
+Response.statusText 是 StatusCode 的描述文本，如成功就是 OK；
+Response.ok 一个 Boolean 类型的值，判断是否正常返回，也就是 StatusCode 为 200-299
+```js
+fetch("http://blog.parryqiu.com")
+.then(function(response){
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.ok);
+})
+```
+
+
+## 接口
+1. Headers
+自定义请求头
+```js
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "text/plain");
+myHeaders.append("Content-Length", content.length.toString());
+myHeaders.append("X-Custom-Header", "ProcessThisImmediately");
+
+var myInit = { 
+    method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' 
+};
+               
+fetch("http://blog.parryqiu.com", myInit)
+.then(function(response){
+    // do something...
+})
+```
+
+2. Request
+Request对象代表了一次fetch请求中的请求体部分
+
+    method - 使用的HTTP动词，GET, POST, PUT, DELETE, HEAD
+
+    url - 请求地址，URL of the request
+
+    headers - 关联的Header对象
+
+    referrer - referrer
+
+    mode - 请求的模式，主要用于跨域设置，cors, no-cors, same-origin
+
+    credentials - 是否发送Cookie omit, same-origin
+
+    redirect - 收到重定向请求之后的操作，follow, error, manual
+
+    integrity - 完整性校验
+
+    cache - 缓存模式(default, reload, no-cache)
+
+```js
+var request = new Request('/users.json', {
+    method: 'POST', 
+    mode: 'cors', 
+    redirect: 'follow',
+    headers: new Headers({
+        'Content-Type': 'text/plain'
+    })
+});
+fetch(request).then(function() { 
+    /* handle response */ 
+});
+```
+
+post请求+body
+```js
+fetch('/users', {
+  method: 'post',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: 'Hubot',
+    login: 'hubot',
+  })
+})
+```
+
+3. response
+响应处理
+
+
+    type - basic, cors
+
+    url
+
+    useFinalURL - 是否为最终地址
+
+    status - 状态码 (ex: 200, 404, etc.)
+
+    ok - 是否成功响应 (status in the range 200-299)
+
+    statusText - status code (ex: OK)
+
+    headers - 响应头
+
+
+```js
+var reponse = new Response('...', {
+    ok:false,
+    statueA:404,
+    url:'/'
+});
+
+
+fetch('/').then(function(responseObj) {
+    console.log('status: ', responseObj.status);
+
+});
+```
+
+- response方法
+
+    clone() - Creates a clone of a Response object.
+
+    error() - Returns a new Response object associated with a network error.
+
+    redirect() - Creates a new response with a different URL.
+
+    arrayBuffer() - Returns a promise that resolves with an ArrayBuffer.
+
+    blob() - Returns a promise that resolves with a Blob.
+
+    formData() - Returns a promise that resolves with a FormData object.
+
+    json() - Returns a promise that resolves with a JSON object.
+
+    text() - Returns a promise that resolves with a USVString (text).
+
+
+## fetch优点
+语法简洁，更加语义化
+基于标准 Promise 实现，支持 async/await
+同构方便，使用isomorphic-fetch
+
+## polifill
+
+    由于 IE8 是 ES3，需要引入 ES5 的 polyfill:es5-shim, es5-sham
+    引入 Promise 的 polyfill:es6-promise
+    引入 fetch 探测库：fetch-detector
+    引入 fetch 的 polyfill:fetch-ie8
+    可选：如果你还使用了 jsonp，引入fetch-jsonp
+    可选：开启 Babel 的 runtime 模式，现在就使用 async/await
+
+## 坑
+1. Fetch 请求默认是不带 cookie 的，需要设置 fetch(url, {credentials: 'include'})
+2. 服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。
