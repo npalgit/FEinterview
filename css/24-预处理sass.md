@@ -1,3 +1,6 @@
+# sass less stylus
+http://efe.baidu.com/blog/revisiting-css-preprocessors/
+
 # Sass使用
 ### 1. sass-ruby
    sass使用ruby编写，必须先安装ruby再安装sass
