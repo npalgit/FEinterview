@@ -1,6 +1,9 @@
 ## 项目-websocket
 ### Websocket是什么样的协议，具体有什么优点
 http://blog.csdn.net/frank_good/article/details/50856585
+
+http://www.ruanyifeng.com/blog/2017/05/websocket.html
+
 1. 首先，Websocket是一个持久化的协议，相对于HTTP这种非持久的协议来说。简单的举个例子吧，用目前应用比较广泛的PHP生命周期来解释。
 
 HTTP的生命周期通过 Request 来界定，也就是一个 Request 一个 Response ，那么在 HTTP1.0 中，这次HTTP请求就结束了。

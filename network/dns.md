@@ -9,3 +9,5 @@
 5、如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(qq.com)给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直至找到www.qq.com主机。 
 
 6、如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。
+
+http://qbview.url.cn/getResourceInfo?appid=31&url=http%3A%2F%2Fwww.sunhao.win%2Farticles%2Fnetwrok-dns.html%3Fnsukey%3DehTfSIgH7cBB9lS51SzfTG9Fi3ezE8uzDvQYJlEPqZGG%252B%252BYydSk%252Bn4wPkvGsonfFQ5idkCZW6JKCSGspDqSuENJrS26K58x%252B1oV0QCHmkQQiVTVQOOsV17ZNxRPv8ZlTyThRO%252BDbN7gC0Ji1D73X9DQWQzLRO8b5vWct7QWFnt7qhvyjtZWa7wjYv6C89iNb&version=10000&doview=1&ua=Mozilla%2F5.0+(Windows+NT+6.1%3B+WOW64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F39.0.2171.95+Safari%2F537.36+MicroMessenger%2F6.5.2.501+NetType%2FWIFI+WindowsWechat+QBCore%2F3.43.493.400+QQBrowser%2F9.0.2524.400&keeplink=0&reformat=0
