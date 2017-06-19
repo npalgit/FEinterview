@@ -72,6 +72,8 @@ document.cookie = 'user='+ encodeURIComponent('name')  + ';expires = ' + new Dat
 （4）cookie安全性不够高。所有的cookie都是以纯文本的形式记录于文件中，因此如果要保存用户名密码等信息时，最好事先经过加密处理。 
 
 ## cookie操作
+document.cookie
+
 ```js
 1. [代码]1．添加一个cookie    
 <script language="JavaScript" type="text/javascript"> 
