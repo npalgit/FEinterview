@@ -285,5 +285,36 @@ http://aisk.me/using-async-await-to-avoid-callback-hell/
 >async 可以声明一个异步函数，此函数需要返回一个 Promise 对象。await 可以等待一个 Promise 对象 resolve，并拿到结果。
 
 
+## modules
+在ES6中，一个模块应该如何对外暴露接口，如果引入其他模块暴露的接口
+
+1. 对外暴露接口
+```js
+//test.js
+const num = 20;
+const obj = {
+  a:0,
+  b: ()=> {}
+}
+export default{
+  num,
+  obj
+}
+//或者
+export const bar = 12345;
+export const foo = ()=>{}
+```
+
+2. 引入模块
+```js
+import test from './test'
+//或者
+import * as test from './test'//将test.js暴露的所有接口组成对象，明明为test
+//或者
+import test, {bar, foo} from './test'//解构赋值
+```
+
 ### babel
 Babel是一个广泛使用的ES6转码器，可以将ES6代码转为ES5代码，从而在现有环境执行。
+
+
