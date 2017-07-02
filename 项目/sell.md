@@ -282,3 +282,17 @@ new Date()
 4. filters
 5. &:not(:last-child)
 6. absolute相对于非static祖先元素的padding-box定位
+
+# 组件
+APP.vue
+header.vue头部
+goods.vue商品
+ratings.vue评价
+sellerl.vue商家
+shopcart.vue购物车
+
+food.vue食物详情
+cartcontrol.vue 购物车加减
+ratingselect.vue 选择评价
+split.vue分割条
+star.vue星星

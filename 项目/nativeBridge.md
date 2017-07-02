@@ -5,7 +5,8 @@
 - HTML通知C++：直接调用其函数
 - 核心类：QWebChannel 
 
-
+http://www.ysheji.com/article/index/arcid/70.html
+http://blog.csdn.net/yinqingwang/article/details/52565133
 
 http://blog.csdn.net/imxiangzi/article/details/52525031
 实例：
@@ -17,51 +18,27 @@ PreviewPage类用于加载HTML页面，在主界面MainWidget类初始化的时�
 //web页面
 <scripttype="text/javascript"src="./qwebchannel.js"></script>
 
- window.onload=function(){
-
+window.onload=function(){
   newQWebChannel(qt.webChannelTransport,function(channel){
-
-                //makedialogobjectaccessibleglobally
+  //makedialogobjectaccessibleglobally
   varcontent=channel.objects.content;
+  document.getElementById("send").onclick=function(){
+    varinput=document.getElementById("input");
+    vartext=input.value;
+    if(!text){
+      return;
+    }
+    output("Sentmessage:"+text);
+    input.value="";
+    content.receiveText(text);
+  }
 
- 
+  content.sendText.connect(function(message){
+    output("Receivedmessage:"+message);
+  });
 
-                document.getElementById("send").onclick=function(){
-
-                    varinput=document.getElementById("input");
-
-                    vartext=input.value;
-
-                    if(!text){
-
-                        return;
-
-                    }
-
- 
-
-                    output("Sentmessage:"+text);
-
-                    input.value="";
-
-                    content.receiveText(text);
-
-                }
-
- 
-
-                content.sendText.connect(function(message){
-
-                    output("Receivedmessage:"+message);
-
-                });
-
- 
-
-                content.receiveText("Clientconnected,readytosend/receivemessages!");
-
-                output("ConnectedtoWebChannel,readytosend/receivemessages!");
-
-           });
-
+  content.receiveText("Clientconnected,readytosend/receivemessages!");
+    output("ConnectedtoWebChannel,readytosend/receivemessages!");
+  });
+```
 
