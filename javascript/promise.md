@@ -1,3 +1,12 @@
+## promise 原理浅析
+1. 一个promise对象代表着一个还未完成，但是预期将来会完成的操作，允许你为异步操作的成功或失败指定处理方法
+
+
+https://segmentfault.com/a/1190000009478377
+http://imweb.io/topic/565af932bb6a753a136242b0
+
+
+
 ## promise：将异步操作以同步操作的流程表示出来，避免层层嵌套回调函数
 解决回调地狱
 代码更加具有可读性和可维护性，将数据请求和数据处理分来
@@ -227,3 +236,10 @@ async function render() {
     let floor = loadImage('xxx');
     let [wallDom, floorDom] = await Promise.all([wall, floor]);
 }
+```
+
+# Generator
+
+
+
+https://segmentfault.com/a/1190000008254704
