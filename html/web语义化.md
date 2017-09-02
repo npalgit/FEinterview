@@ -33,8 +33,10 @@ H1标签应该出现在body当中，不应该出现头部当中，并且不得�
 ```
 
 2. 文本:p, span
+```
 strong:着重  b:粗体
 em:强调      i:斜体
+```
 2. 表单
 form input select button
 ```html
