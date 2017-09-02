@@ -346,5 +346,35 @@ fetch('/').then(function(responseObj) {
     可选：开启 Babel 的 runtime 模式，现在就使用 async/await
 
 ## 坑
-1. Fetch 请求默认是不带 cookie 的，需要设置 fetch(url, {credentials: 'include'})
+1. Fetch 请求默认是不带 cookie 的，需要设置 `fetch(url, {credentials: 'include'})`
 2. 服务器返回 400，500 错误码时并不会 reject，只有网络错误这些导致请求不能完成时，fetch 才会被 reject。
+```js
+fetch('xx.png')
+.then(() => {
+  console.log('ok');
+})
+.catch(() => {
+  console.log('error');
+});
+```
+打印出 「ok」
+>fetch 只有在遇到网络错误的时候才会 reject 这个 promise，比如用户断网或请求地址的域名无法解析等。只要服务器能够返回 HTTP 响应（甚至只是 CORS preflight 的 OPTIONS 响应），promise 一定是 resolved 的状态。
+判断一个 fetch 请求是否成功使用**`response.ok`**
+```js
+fetch('xx.png')
+.then((response) => {
+  if (response.ok) {
+    console.log('ok');
+  } else {
+    console.log('error');
+  }
+})
+.catch(() => {
+  console.log('error');
+});
+```
+
+3. fetch 不支持同步请求
+4. fetch 不支持取消一个请求
+
+总结：在实际项目使用中，需要做各种各样的封装和异常处理，而并非开箱即用fetch，更做不到直接替换 $.ajax 或其他请求库

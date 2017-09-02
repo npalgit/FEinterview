@@ -2,6 +2,9 @@
 A:SYN
 B:SYN,ACK
 A:ACK
+
+>主要目的防止server端一直等待，浪费资源。
+
 ## 四次挥手
 A:FIN
 B:ACK
