@@ -20,7 +20,7 @@ BFC(Block formatting context)直译为"块级格式化上下文"。它是一个�
 ## 4. BFC的作用及原理
 1. 自适应两栏布局
 
-```
+```html
 <style>
     body {
         width: 300px;

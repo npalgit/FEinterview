@@ -6,6 +6,7 @@
 - 支持IE8
 - 社区、组件生态强大
 - React Native
+- license问题
 
 # Vue优点
 - 易学
